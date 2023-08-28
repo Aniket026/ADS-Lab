@@ -1,0 +1,66 @@
+/*      NAME:-Aniket Borawake
+        ROLL NO:26
+        BATCH:-AS2
+*/
+----------------------------------------------------------------------------------------------------
+#include<iostream>
+using namespace std;
+
+class graph{
+public:
+	int fuel;
+	string city[10];
+	int v,e;
+	void create();
+	void display();
+	int a[10][10];
+};
+
+void graph::create(){
+	cout<<"Enter total no. of cities :";
+	cin>>v;
+	for(int i=0;i<v;i++){
+		cout<<"Enter city names :";
+		cin>>city[i];
+	}
+	cout<<"Enter no. of Edges :";
+	cin>>e;
+	for(int i=0;i<v;i++){
+		for(int j=i;j<v;j++){
+			if(i==j){
+				a[i][j]=0;
+			}
+			else{
+				cout<<"Enter fuel from "<<city[i]<<" to "<<city[j]<<" :";
+				cin>>fuel;
+				a[i][j]=fuel;
+				a[j][i]=a[i][j];
+			}
+	 	}
+	}
+}
+
+void graph::display(){
+for(int i=0;i<v;i++){
+cout<<"\t"<<"\t"<<city[i];
+}
+cout<<"\n";
+
+	for(int i=0;i<v;i++){
+	cout<<"\t"<<city[i]<<"\t";
+		for(int j=0;j<v;j++){
+			cout<<a[i][j]<<"\t"<<"\t";
+			
+		}
+		cout<<"\n";
+		
+		
+	}
+}
+
+int main(){
+	graph g;
+	g.create();
+	g.display();
+	return 0;
+}
