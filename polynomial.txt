@@ -1,3 +1,10 @@
+
+/*      NAME:-Aniket Borawake
+        ROLL NO:26
+        BATCH:-AS2
+*/
+
+
 #include <iostream>
 using namespace std;
 class poly
