@@ -1,0 +1,130 @@
+#include<iostream>
+using namespace std;
+
+class BT
+{
+  public:
+  char data;
+  BT *Lchild,*Rchild;
+  void create();
+  void insert(BT *root, BT *nxt);
+  void inorder(BT *root);
+  void preorder(BT *root);
+  void postorder(BT *root);
+}*root, *nxt;
+
+void BT::create()
+{
+  root=new BT;
+  root->Lchild=NULL;
+  root->Rchild=NULL;
+  cout<<"\n Enter the root data = ";
+  cin>>root->data;
+  int ch;
+  do
+  {
+    cout<<"\n Do you want to add more data(yes==1/no==0) : ";
+    cin>>ch;
+    if(ch==1)
+    {
+      nxt=new BT;
+      nxt->Lchild=NULL;
+      nxt->Rchild=NULL;
+      cout<<"\nEnter the new node = ";
+      cin>>nxt->data;
+      insert(root,nxt);
+    }
+  }while(ch==1);
+}
+
+void BT::insert(BT *root,BT *nxt)\
+{
+  char chr;
+  cout<<"\n The root node of the tree"<<" "<<root->data;
+  cout<<"\n Where you want to add new node 'L' or 'R'";
+  cout<<"Enter your choice = ";
+  cin>>chr;
+  if(chr=='L' || chr=='l')
+  {
+    if(root->Lchild==NULL)
+    {
+      root->Lchild=nxt;
+    }
+    else{
+      insert(root->Lchild,nxt);
+    }
+  }
+  if(chr=='R' || chr=='r')
+  {
+    if(root->Rchild==NULL)
+    {
+      root->Rchild=nxt;
+    }
+    else{
+      insert(root->Rchild,nxt);
+    }
+  }
+}
+
+void BT::inorder(BT *root)
+{
+  if(root!=NULL)
+  {
+    inorder(root->Lchild);
+    cout<<"\t"<<root->data;
+    inorder(root->Rchild);
+  }
+}
+
+void BT::preorder(BT *root)
+{
+  if(root!=NULL)
+  {
+    cout<<"\t"<<root->data;
+    preorder(root->Lchild);
+    preorder(root->Rchild);
+  }
+}
+
+void BT::postorder(BT *root)
+{
+  if(root!=NULL)
+  {
+    postorder(root->Lchild);
+    postorder(root->Rchild);
+    cout<<"\t"<<root->data;
+  }
+}
+
+int main()
+{
+  int c;
+  BT B;
+  do{
+  cout<<"\n Menu:";
+  cout<<"\n Enter your choice : ";
+  cout<<"\n 1.create\n 2.inorder\n 3.preorder\n 4.postorder\n 5.Exit\n";
+  cin>>c;
+  switch(c)
+  {
+    case 1:
+    B.create();
+    break;
+    case 2:
+    B.inorder(root);
+    break;
+    case 3:
+    B.preorder(root);
+    break;
+    case 4:
+    B.postorder(root);
+    break;
+  }
+  }while(c!=5);
+  return 0;
+}
+
+
+
+
+
